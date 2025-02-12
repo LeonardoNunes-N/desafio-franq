@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  desafio_dados:
+    build: .
+    container_name: desafio_analista_dados
+    volumes:
+      - ./data:/app/data
+      - ./notebooks:/app/notebooks
+      - ./scripts:/app/scripts
+      - ./output:/app/output
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=token
