@@ -1,4 +1,18 @@
-WITH candidatos_validos AS (
+WITH competencias_atendidas AS (
+    -- Primeiro, identificamos as competências atendidas para cada candidato e vaga
+    SELECT 
+        vc.id_vaga,
+        e.id_candidato,
+        COUNT(*) AS total_competencias_atendidas
+    FROM vagacompetencia vc
+    LEFT JOIN competencia_experiencia ce ON vc.id_competencia = ce.id_competencia
+    LEFT JOIN experiencias e ON ce.id_experiencia = e.id
+    WHERE ce.tempo_competencia_meses >= vc.tempo_de_experiencia_meses
+    GROUP BY vc.id_vaga, e.id_candidato
+), 
+
+candidatos_validos AS (
+    -- Agora, juntamos os dados dos candidatos e as competências atendidas
     SELECT 
         c.id AS candidato_id,
         c.nome AS candidato_nome,
@@ -13,15 +27,13 @@ WITH candidatos_validos AS (
         CASE 
             WHEN cv.recomendacao = 1 THEN 1 ELSE 0 
         END AS atende_fit_cultural,
-        CASE 
-            WHEN (SELECT SUM(ce.tempo_competencia) FROM competencia_experiencia ce 
-                  JOIN experiencias e ON ce.id_experiencia = e.id
-                  WHERE e.id_candidato = c.id) >= 60 THEN 1 ELSE 0 
-        END AS atende_experiencia_tecnica
+        COALESCE(ca.total_competencias_atendidas, 0) AS soma_competencias_atendidas
     FROM candidatos c
     JOIN candidato_vaga cv ON c.id = cv.id_candidato
     JOIN vagas v ON cv.id_vaga = v.id
+    LEFT JOIN competencias_atendidas ca ON ca.id_vaga = v.id AND ca.id_candidato = c.id
 )
+
 SELECT 
     candidato_id, 
     candidato_nome, 
@@ -30,9 +42,9 @@ SELECT
     atende_localizacao, 
     atende_salario, 
     atende_fit_cultural, 
-    atende_experiencia_tecnica,
+    soma_competencias_atendidas,
     CASE 
-        WHEN (atende_localizacao + atende_salario + atende_fit_cultural + atende_experiencia_tecnica) = 0 THEN 'Inconsistência'
+        WHEN (atende_localizacao + atende_salario + atende_fit_cultural + soma_competencias_atendidas) = 0 THEN 'Inconsistência'
         ELSE 'Aprovado'
     END AS status
 FROM candidatos_validos;
