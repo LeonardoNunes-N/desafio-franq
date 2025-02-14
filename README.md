@@ -33,7 +33,8 @@ Para que o processamento aconteça corretamente, os seguintes arquivos são nece
 
 * app/data/teste___desafio_técnico_-_analista_de_dados_pleno_anexo.db
 * app/scripts/candidatos_pre_selecionados.sql
-* app/scripts/tratamento_db.sql
+* app/scripts/tratamento_db.sql 
+* **NECESSÁRIO DOCKER ENGINE NO AMBIENTE PARA RODAR**
 ## Como Rodar o Processamento
 
 ### Opção 1: Construir as imagens e depois rodar os containers
