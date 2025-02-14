@@ -13,3 +13,7 @@ services:
     environment:
       - JUPYTER_ENABLE_LAB=yes
       - JUPYTER_TOKEN=token
+      - DB_PATH=/app/data/teste___desafio_técnico_-_analista_de_dados_pleno_anexo.db
+      - SQL_SCRIPT_PATH=/app/scripts/canditados_pre_selecionados.sql
+      - SQL_SCRIPT_TRATAMENTO_PATH=/app/scripts/tratamento_db.sql
+      - OUTPUT_CSV=/app/output/
