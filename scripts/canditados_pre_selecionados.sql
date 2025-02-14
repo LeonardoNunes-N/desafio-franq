@@ -1,5 +1,4 @@
 WITH competencias_atendidas AS (
-    -- Primeiro, identificamos as competências atendidas para cada candidato e vaga
     SELECT 
         vc.id_vaga,
         e.id_candidato,
