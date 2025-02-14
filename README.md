@@ -6,17 +6,17 @@ Neste processo é realizado o cálculo de score dos candidatos de uma base de RH
 
 O projeto segue uma arquitetura de arquivos fixa para facilitar a organização e execução. A estrutura é a seguinte:
 
-/desafio_analista_dados
-│── Dockerfile
-│── docker-compose.yml
-│── scripts/
-│   ├── candidatos_pre_selecionados.sql
-│   ├── tratamento_db.sql
-│── notebooks/
-│   ├── score_rh.ipynb
-│── data/
-│   ├── banco.sqlite
-│── output/
+* /desafio_analista_dados
+* │── Dockerfile
+* │── docker-compose.yml
+* │── scripts/
+* │   ├── candidatos_pre_selecionados.sql
+* │   ├── tratamento_db.sql
+* │── notebooks/
+* │   ├── score_rh.ipynb
+* │── data/
+* │   ├── banco.sqlite
+* │── output/
 
 ## Descrição dos Arquivos
 
