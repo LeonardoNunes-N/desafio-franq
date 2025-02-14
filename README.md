@@ -26,7 +26,7 @@ O projeto segue uma arquitetura de arquivos fixa para facilitar a organização 
 * scripts/tratamento_db.sql: Script SQL para o tratamento da base de dados.
 * notebooks/score_rh.ipynb: Notebook onde o cálculo do score dos candidatos é realizado.
 * data/banco.sqlite: Banco de dados SQLite com as informações para o processamento.
-* output/: Pasta onde os resultados serão armazenados.
+* output/: Pasta onde os resultados csvs serão armazenados.
 ## Arquivos Necessários
 
 Para que o processamento aconteça corretamente, os seguintes arquivos são necessários:
@@ -50,5 +50,23 @@ Para que o processamento aconteça corretamente, os seguintes arquivos são nece
 2. Rodar os containers.
 ## Resultados
 
-Os resultados do processamento serão gerados e armazenados na pasta output/.
+Os resultados do processamento serão gerados e armazenados na pasta output/. 
+
+## Possíveis Melhorias:
+* **Tratamento de Dados>** Realizar o tratamento dos dados após a inserção no banco de dados, permitindo maior flexibilidade no processo de transformação dos dados.
+
+* **Cálculo do Score de Competência:** Após uma discussão com o time de RH, desenvolver uma lógica que considere pesos por nível de competência, em vez de basear-se apenas na quantidade de competências.
+
+* **Incoerência nas Vagas de Inscrição:** Após conversa com o time de RH, determinar a melhor forma de visualizar candidatos que apresentem incoerência nas vagas nas quais se inscrevem. Além disso, avaliar a necessidade de atribuir um peso negativo no score desses candidatos.
+
+* **Especialistas e Incoerência:** Após uma conversa com o time de RH, definir a melhor forma de apresentar os resultados da verificação de especialistas e, caso necessário, discutir a aplicação de um peso positivo no score dos candidatos com essa incoerência, e o impacto disso no cálculo.
+
+* **Sinalização de Especialistas:** Após consulta com o time de RH, revisar a abordagem de sinalização dos resultados da verificação de especialistas e avaliar a necessidade de atribuir um peso positivo no score, bem como definir a magnitude desse peso. 
+
+* **Automatizacao do processamento:** Com o Docker, é possível orquestrar sua execução de forma simplificada, bastando definir a ferramenta mais adequada para essa finalidade.
+  * Cron (Linux/macOS)
+  * Systemd (Linux)
+  * Kubernetes CronJobs
+  * Nuvem(GCP Kubernets, AWS, AZURE)
+
 
