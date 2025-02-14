@@ -12,7 +12,6 @@ WITH competencias_atendidas AS (
 ), 
 
 candidatos_validos AS (
-    -- Agora, juntamos os dados dos candidatos e as competências atendidas
     SELECT 
         c.id AS candidato_id,
         c.nome AS candidato_nome,
